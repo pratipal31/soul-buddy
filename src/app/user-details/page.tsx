@@ -15,40 +15,165 @@ import {
 
 // Define a list of Indian states and cities
 const statesAndCities = {
-  "Andhra Pradesh": ["Hyderabad", "Visakhapatnam", "Vijayawada", "Tirupati", "Rajahmundry", "Kakinada"],
-  "Arunachal Pradesh": ["Itanagar", "Tawang", "Ziro", "Naharlagun", "Pasighat", "Tezu"],
-  "Assam": ["Guwahati", "Dibrugarh", "Jorhat", "Nagaon", "Silchar", "Tinsukia"],
-  "Bihar": ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Munger", "Buxar"],
-  "Chhattisgarh": ["Raipur", "Bilaspur", "Durg", "Korba", "Raigarh", "Jagdalpur"],
-  "Goa": ["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Cortalim"],
-  "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar"],
-  "Haryana": ["Chandigarh", "Faridabad", "Gurgaon", "Ambala", "Hisar", "Karnal"],
-  "Himachal Pradesh": ["Shimla", "Dharamshala", "Manali", "Kullu", "Mandi", "Solan"],
-  "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Hazaribagh", "Bokaro", "Giridih"],
-  "Karnataka": ["Bangalore", "Mysore", "Mangalore", "Hubli", "Bellary", "Tumkur"],
-  "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Kottayam", "Thrissur", "Malappuram"],
-  "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain", "Sagar"],
-  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Thane"],
-  "Manipur": ["Imphal", "Thoubal", "Kakching", "Churachandpur", "Bishnupur", "Tamenglong"],
-  "Meghalaya": ["Shillong", "Tura", "Jowai", "Nongstoin", "Williamnagar", "Baghmara"],
-  "Mizoram": ["Aizawl", "Lunglei", "Champhai", "Kolasib", "Serchhip", "Saiha"],
-  "Nagaland": ["Kohima", "Dimapur", "Mokokchung", "Wokha", "Zunheboto", "Phek"],
-  "Odisha": ["Bhubaneswar", "Cuttack", "Berhampur", "Rourkela", "Sambalpur", "Puri"],
-  "Punjab": ["Chandigarh", "Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Bathinda"],
-  "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer", "Bikaner"],
-  "Sikkim": ["Gangtok", "Namchi", "Pelling", "Mangan", "Rongli", "Jorethang"],
-  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Trichy", "Salem", "Tirunelveli"],
-  "Telangana": ["Hyderabad", "Warangal", "Khammam", "Nizamabad", "Karimnagar", "Khammam"],
-  "Tripura": ["Agartala", "Udaipur", "Dharmanagar", "Sepahijala", "Amarpur", "Kailashahar"],
-  "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra", "Allahabad", "Meerut"],
-  "Uttarakhand": ["Dehradun", "Nainital", "Haridwar", "Rishikesh", "Roorkee", "Haridwar"],
-  "West Bengal": ["Kolkata", "Siliguri", "Durgapur", "Asansol", "Howrah", "Darjeeling"],
-  "Andaman and Nicobar Islands": ["Port Blair", "Havelock", "Neil Island", "Diglipur", "Mayabunder"],
-  "Chandigarh": ["Chandigarh"],
+  "Andhra Pradesh": [
+    "Hyderabad",
+    "Visakhapatnam",
+    "Vijayawada",
+    "Tirupati",
+    "Rajahmundry",
+    "Kakinada",
+  ],
+  "Arunachal Pradesh": [
+    "Itanagar",
+    "Tawang",
+    "Ziro",
+    "Naharlagun",
+    "Pasighat",
+    "Tezu",
+  ],
+  Assam: ["Guwahati", "Dibrugarh", "Jorhat", "Nagaon", "Silchar", "Tinsukia"],
+  Bihar: ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Munger", "Buxar"],
+  Chhattisgarh: ["Raipur", "Bilaspur", "Durg", "Korba", "Raigarh", "Jagdalpur"],
+  Goa: ["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Cortalim"],
+  Gujarat: [
+    "Ahmedabad",
+    "Surat",
+    "Vadodara",
+    "Rajkot",
+    "Bhavnagar",
+    "Jamnagar",
+  ],
+  Haryana: ["Chandigarh", "Faridabad", "Gurgaon", "Ambala", "Hisar", "Karnal"],
+  "Himachal Pradesh": [
+    "Shimla",
+    "Dharamshala",
+    "Manali",
+    "Kullu",
+    "Mandi",
+    "Solan",
+  ],
+  Jharkhand: [
+    "Ranchi",
+    "Jamshedpur",
+    "Dhanbad",
+    "Hazaribagh",
+    "Bokaro",
+    "Giridih",
+  ],
+  Karnataka: ["Bangalore", "Mysore", "Mangalore", "Hubli", "Bellary", "Tumkur"],
+  Kerala: [
+    "Thiruvananthapuram",
+    "Kochi",
+    "Kozhikode",
+    "Kottayam",
+    "Thrissur",
+    "Malappuram",
+  ],
+  "Madhya Pradesh": [
+    "Bhopal",
+    "Indore",
+    "Gwalior",
+    "Jabalpur",
+    "Ujjain",
+    "Sagar",
+  ],
+  Maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Thane"],
+  Manipur: [
+    "Imphal",
+    "Thoubal",
+    "Kakching",
+    "Churachandpur",
+    "Bishnupur",
+    "Tamenglong",
+  ],
+  Meghalaya: [
+    "Shillong",
+    "Tura",
+    "Jowai",
+    "Nongstoin",
+    "Williamnagar",
+    "Baghmara",
+  ],
+  Mizoram: ["Aizawl", "Lunglei", "Champhai", "Kolasib", "Serchhip", "Saiha"],
+  Nagaland: ["Kohima", "Dimapur", "Mokokchung", "Wokha", "Zunheboto", "Phek"],
+  Odisha: [
+    "Bhubaneswar",
+    "Cuttack",
+    "Berhampur",
+    "Rourkela",
+    "Sambalpur",
+    "Puri",
+  ],
+  Punjab: [
+    "Chandigarh",
+    "Amritsar",
+    "Ludhiana",
+    "Jalandhar",
+    "Patiala",
+    "Bathinda",
+  ],
+  Rajasthan: ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer", "Bikaner"],
+  Sikkim: ["Gangtok", "Namchi", "Pelling", "Mangan", "Rongli", "Jorethang"],
+  "Tamil Nadu": [
+    "Chennai",
+    "Coimbatore",
+    "Madurai",
+    "Trichy",
+    "Salem",
+    "Tirunelveli",
+  ],
+  Telangana: [
+    "Hyderabad",
+    "Warangal",
+    "Khammam",
+    "Nizamabad",
+    "Karimnagar",
+    "Khammam",
+  ],
+  Tripura: [
+    "Agartala",
+    "Udaipur",
+    "Dharmanagar",
+    "Sepahijala",
+    "Amarpur",
+    "Kailashahar",
+  ],
+  "Uttar Pradesh": [
+    "Lucknow",
+    "Kanpur",
+    "Varanasi",
+    "Agra",
+    "Allahabad",
+    "Meerut",
+  ],
+  Uttarakhand: [
+    "Dehradun",
+    "Nainital",
+    "Haridwar",
+    "Rishikesh",
+    "Roorkee",
+    "Haridwar",
+  ],
+  "West Bengal": [
+    "Kolkata",
+    "Siliguri",
+    "Durgapur",
+    "Asansol",
+    "Howrah",
+    "Darjeeling",
+  ],
+  "Andaman and Nicobar Islands": [
+    "Port Blair",
+    "Havelock",
+    "Neil Island",
+    "Diglipur",
+    "Mayabunder",
+  ],
+  Chandigarh: ["Chandigarh"],
   "Dadra and Nagar Haveli and Daman and Diu": ["Daman", "Diu", "Silvassa"],
-  "Lakshadweep": ["Kavaratti", "Andrott", "Minicoy"],
-  "Delhi": ["New Delhi", "Old Delhi", "Rohini", "Connaught Place", "Janakpuri"],
-  "Puducherry": ["Puducherry", "Auroville", "Karaikal", "Mahe"]
+  Lakshadweep: ["Kavaratti", "Andrott", "Minicoy"],
+  Delhi: ["New Delhi", "Old Delhi", "Rohini", "Connaught Place", "Janakpuri"],
+  Puducherry: ["Puducherry", "Auroville", "Karaikal", "Mahe"],
 };
 
 export default function CosmicForm() {
@@ -63,9 +188,26 @@ export default function CosmicForm() {
     city: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      const response = await fetch("/api/FormData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Form data saved successfully!");
+      } else {
+        console.error("Failed to save form data.");
+      }
+    } catch (error) {
+      console.error("Error while saving data:", error);
+    }
   };
 
   return (
@@ -215,8 +357,9 @@ export default function CosmicForm() {
                 <Label className="text-gray-200">State of Birth</Label>
                 <Select
                   value={formData.state}
-                  onValueChange={(value) =>
-                    setFormData({ ...formData, state: value, city: "" }) // Clear city when state changes
+                  onValueChange={
+                    (value) =>
+                      setFormData({ ...formData, state: value, city: "" }) // Clear city when state changes
                   }
                 >
                   <SelectTrigger className="w-full border border-gray-400 px-3 py-2 bg-transparent text-white">
