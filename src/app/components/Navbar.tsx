@@ -29,13 +29,11 @@ const Navbar: React.FC = () => {
 
         {/* Menu Items (Desktop) */}
         <div className="hidden md:flex space-x-8 items-center">
-          <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} />
-          <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} />
-          <NavLink
-            href="/recommendations"
-            text="Recommendations"
-            Icon={SunIcon}
-          />
+          <SignedIn>
+            <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} />
+            <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} />
+            <NavLink href="/recommendations" text="Recommendations" Icon={SunIcon} />
+          </SignedIn>
 
           {/* Authentication Buttons */}
           <SignedOut>
@@ -64,11 +62,7 @@ const Navbar: React.FC = () => {
               stroke="currentColor"
               className="h-7 w-7"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
             <svg
@@ -79,37 +73,20 @@ const Navbar: React.FC = () => {
               stroke="currentColor"
               className="h-7 w-7"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}
         </button>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="absolute top-16 left-0 w-full bg-gradient-to-r from-purple-600 to-indigo-700 shadow-md z-10 md:hidden">
+          <div className="absolute top-16 left-0 w-full bg-gradient-to-r from-purple-600 to-indigo-700 shadow-md z-10 md:hidden z-50">
             <div className="flex flex-col items-center space-y-6 py-6">
-              <NavLink
-                href="/dashboard"
-                text="Dashboard"
-                Icon={HomeIcon}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
-              <NavLink
-                href="/kundali"
-                text="Kundali"
-                Icon={UserCircleIcon}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
-              <NavLink
-                href="/recommendations"
-                text="Recommendations"
-                Icon={SunIcon}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
+              <SignedIn>
+                <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} closeMenu={() => setIsMenuOpen(false)} />
+                <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} closeMenu={() => setIsMenuOpen(false)} />
+                <NavLink href="/recommendations" text="Recommendations" Icon={SunIcon} closeMenu={() => setIsMenuOpen(false)} />
+              </SignedIn>
 
               {/* Authentication Buttons */}
               <SignedOut>
