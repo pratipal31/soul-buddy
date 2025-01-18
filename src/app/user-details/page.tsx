@@ -201,11 +201,14 @@ export default function CosmicForm() {
       });
 
       if (response.ok) {
+        alert("Form data submitted successfully!"); // Display success message
         console.log("Form data saved successfully!");
       } else {
+        alert("Failed to submit form data."); // Display error message
         console.error("Failed to save form data.");
       }
     } catch (error) {
+      alert("Error while submitting the form."); // Display error message
       console.error("Error while saving data:", error);
     }
   };
