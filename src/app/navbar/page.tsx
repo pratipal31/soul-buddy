@@ -7,7 +7,6 @@ import { useState } from "react";
 import {
   HomeIcon,
   UserCircleIcon,
-  ChatBubbleLeftRightIcon,
   SunIcon,
 } from "@heroicons/react/24/outline";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
@@ -31,11 +30,7 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex space-x-8 items-center">
           <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} />
           <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} />
-          <NavLink
-            href="/recommendations"
-            text="Recommendations"
-            Icon={SunIcon}
-          />
+          <NavLink href="/recommendations" text="Recommendations" Icon={SunIcon} />
 
           {/* Authentication Buttons */}
           <SignedOut>
@@ -54,6 +49,8 @@ const Navbar: React.FC = () => {
         <button
           className="md:hidden text-white focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? (
             <svg
@@ -89,42 +86,50 @@ const Navbar: React.FC = () => {
         </button>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="absolute top-16 left-0 w-full bg-gradient-to-r from-purple-600 to-indigo-700 shadow-md z-10 md:hidden">
-            <div className="flex flex-col items-center space-y-6 py-6">
-              <NavLink
-                href="/dashboard"
-                text="Dashboard"
-                Icon={HomeIcon}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
-              <NavLink
-                href="/kundali"
-                text="Kundali"
-                Icon={UserCircleIcon}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
-              <NavLink
-                href="/recommendations"
-                text="Recommendations"
-                Icon={SunIcon}
-                closeMenu={() => setIsMenuOpen(false)}
-              />
+        {/* Mobile Menu */}
+<div
+  className={`absolute top-16 left-0 w-full bg-gradient-to-r from-red-600 to-red-700 shadow-md z-10 md:hidden transform ${
+    isMenuOpen ? "translate-y-0" : "-translate-y-full"
+  } transition-transform duration-300 ease-in-out`}
+>
+  <div className="flex flex-col items-center space-y-6 py-6 px-4">
+    {/* Navigation Links */}
+    <NavLink
+      href="/dashboard"
+      text="Dashboard"
+      Icon={HomeIcon}
+      closeMenu={() => setIsMenuOpen(false)}
+    />
+    <NavLink
+      href="/kundali"
+      text="Kundali"
+      Icon={UserCircleIcon}
+      closeMenu={() => setIsMenuOpen(false)}
+    />
+    <NavLink
+      href="/recommendations"
+      text="Recommendations"
+      Icon={SunIcon}
+      closeMenu={() => setIsMenuOpen(false)}
+    />
 
-              {/* Authentication Buttons */}
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <button className="bg-yellow-400 text-red-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300">
-                    Sign In
-                  </button>
-                </SignInButton>
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </div>
-          </div>
-        )}
+    {/* Divider */}
+    <div className="border-t border-yellow-400 w-full my-4"></div>
+
+    {/* Authentication Buttons */}
+    <SignedOut>
+      <SignInButton mode="modal">
+        <button className="bg-yellow-400 text-red-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 w-full">
+          Sign In
+        </button>
+      </SignInButton>
+    </SignedOut>
+    <SignedIn>
+      <UserButton />
+    </SignedIn>
+  </div>
+</div>
+
       </nav>
     </header>
   );
