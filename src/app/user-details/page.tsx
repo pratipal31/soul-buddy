@@ -13,6 +13,44 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// Define a list of Indian states and cities
+const statesAndCities = {
+  "Andhra Pradesh": ["Hyderabad", "Visakhapatnam", "Vijayawada", "Tirupati", "Rajahmundry", "Kakinada"],
+  "Arunachal Pradesh": ["Itanagar", "Tawang", "Ziro", "Naharlagun", "Pasighat", "Tezu"],
+  "Assam": ["Guwahati", "Dibrugarh", "Jorhat", "Nagaon", "Silchar", "Tinsukia"],
+  "Bihar": ["Patna", "Gaya", "Muzaffarpur", "Bhagalpur", "Munger", "Buxar"],
+  "Chhattisgarh": ["Raipur", "Bilaspur", "Durg", "Korba", "Raigarh", "Jagdalpur"],
+  "Goa": ["Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Cortalim"],
+  "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar"],
+  "Haryana": ["Chandigarh", "Faridabad", "Gurgaon", "Ambala", "Hisar", "Karnal"],
+  "Himachal Pradesh": ["Shimla", "Dharamshala", "Manali", "Kullu", "Mandi", "Solan"],
+  "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Hazaribagh", "Bokaro", "Giridih"],
+  "Karnataka": ["Bangalore", "Mysore", "Mangalore", "Hubli", "Bellary", "Tumkur"],
+  "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Kottayam", "Thrissur", "Malappuram"],
+  "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain", "Sagar"],
+  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Thane"],
+  "Manipur": ["Imphal", "Thoubal", "Kakching", "Churachandpur", "Bishnupur", "Tamenglong"],
+  "Meghalaya": ["Shillong", "Tura", "Jowai", "Nongstoin", "Williamnagar", "Baghmara"],
+  "Mizoram": ["Aizawl", "Lunglei", "Champhai", "Kolasib", "Serchhip", "Saiha"],
+  "Nagaland": ["Kohima", "Dimapur", "Mokokchung", "Wokha", "Zunheboto", "Phek"],
+  "Odisha": ["Bhubaneswar", "Cuttack", "Berhampur", "Rourkela", "Sambalpur", "Puri"],
+  "Punjab": ["Chandigarh", "Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Bathinda"],
+  "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Ajmer", "Bikaner"],
+  "Sikkim": ["Gangtok", "Namchi", "Pelling", "Mangan", "Rongli", "Jorethang"],
+  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Trichy", "Salem", "Tirunelveli"],
+  "Telangana": ["Hyderabad", "Warangal", "Khammam", "Nizamabad", "Karimnagar", "Khammam"],
+  "Tripura": ["Agartala", "Udaipur", "Dharmanagar", "Sepahijala", "Amarpur", "Kailashahar"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Agra", "Allahabad", "Meerut"],
+  "Uttarakhand": ["Dehradun", "Nainital", "Haridwar", "Rishikesh", "Roorkee", "Haridwar"],
+  "West Bengal": ["Kolkata", "Siliguri", "Durgapur", "Asansol", "Howrah", "Darjeeling"],
+  "Andaman and Nicobar Islands": ["Port Blair", "Havelock", "Neil Island", "Diglipur", "Mayabunder"],
+  "Chandigarh": ["Chandigarh"],
+  "Dadra and Nagar Haveli and Daman and Diu": ["Daman", "Diu", "Silvassa"],
+  "Lakshadweep": ["Kavaratti", "Andrott", "Minicoy"],
+  "Delhi": ["New Delhi", "Old Delhi", "Rohini", "Connaught Place", "Janakpuri"],
+  "Puducherry": ["Puducherry", "Auroville", "Karaikal", "Mahe"]
+};
+
 export default function CosmicForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -178,18 +216,23 @@ export default function CosmicForm() {
                 <Select
                   value={formData.state}
                   onValueChange={(value) =>
-                    setFormData({ ...formData, state: value })
+                    setFormData({ ...formData, state: value, city: "" }) // Clear city when state changes
                   }
                 >
-                  <SelectTrigger className="w-full border border-gray-400 px-3 py-2 bg-transparent text-white mt-2">
-                    <SelectValue placeholder="Select your Birth State" />
+                  <SelectTrigger className="w-full border border-gray-400 px-3 py-2 bg-transparent text-white">
+                    <SelectValue placeholder="State" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="state1">State 1</SelectItem>
-                    <SelectItem value="state2">State 2</SelectItem>
+                    {Object.keys(statesAndCities).map((state) => (
+                      <SelectItem key={state} value={state}>
+                        {state}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* City of Birth */}
               <div>
                 <Label className="text-gray-200">City of Birth</Label>
                 <Select
@@ -198,23 +241,24 @@ export default function CosmicForm() {
                     setFormData({ ...formData, city: value })
                   }
                 >
-                  <SelectTrigger className="w-full border border-gray-400 px-3 py-2 bg-transparent text-white mt-2">
-                    <SelectValue placeholder="Select city" />
+                  <SelectTrigger className="w-full border border-gray-400 px-3 py-2 bg-transparent text-white">
+                    <SelectValue placeholder="City" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="city1">City 1</SelectItem>
-                    <SelectItem value="city2">City 2</SelectItem>
+                    {formData.state &&
+                      statesAndCities[formData.state].map((city) => (
+                        <SelectItem key={city} value={city}>
+                          {city}
+                        </SelectItem>
+                      ))}
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
 
-          {/* Submit Button */}
-          <Button
-            type="submit"
-            className="w-full bg-red-600 hover:bg-red-800 text-white px-4 py-2 rounded-md transition-colors"
-          >
+          {/* Submit */}
+          <Button type="submit" className="w-full bg-red-600 text-white">
             Submit
           </Button>
         </form>
