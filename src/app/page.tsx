@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-b from-red-50 to-white dark:from-gray-900 dark:to-gray-800">
       <title>SoulBuddy</title>
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center">
@@ -29,7 +29,7 @@ export default function Home() {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex justify-center mb-6"
           >
-            <Heart className="h-16 w-16 text-pink-500" />
+            <Heart className="h-16 w-16 text-red-600" />
           </motion.div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Find Your Spiritual Match
@@ -40,13 +40,14 @@ export default function Home() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               size="lg"
-              className="bg-transparent hover:bg-purple-600 text-white hover:text-white border border-white"
+              className="bg-transparent hover:bg-red-600 text-white hover:text-white border border-white"
             >
               Start Your Journey
             </Button>
           </motion.div>
         </motion.div>
       </section>
+
       {/* Content Section */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
@@ -60,9 +61,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 text-center"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 text-center transition-transform transform hover:scale-105 hover:shadow-xl"
           >
-            <h3 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4">
+            <h3 className="text-2xl font-bold text-red-600 dark:text-purple-400 mb-4">
               SoulBuddy?
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -79,9 +80,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 text-center"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 text-center transition-transform transform hover:scale-105 hover:shadow-xl"
           >
-            <h3 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4">
+            <h3 className="text-2xl font-bold text-red-600 dark:text-purple-400 mb-4">
               Why Choose Us?
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -98,9 +99,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 text-center"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 text-center transition-transform transform hover:scale-105 hover:shadow-xl"
           >
-            <h3 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4">
+            <h3 className="text-2xl font-bold text-red-600 dark:text-purple-400 mb-4">
               Why Trust Us?
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
@@ -115,7 +116,6 @@ export default function Home() {
       </motion.section>
 
       {/* Footer */}
-      {/* Footer */}
       <footer
         className="relative bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
@@ -128,7 +128,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
               {/* About Section */}
               <div>
-                <h3 className="font-bold text-lg mb-4 text-purple-400">
+                <h3 className="font-bold text-lg mb-4 text-red-600">
                   About SoulBuddy
                 </h3>
                 <p>
@@ -140,27 +140,27 @@ export default function Home() {
 
               {/* Navigation Links */}
               <div>
-                <h3 className="font-bold text-lg mb-4 text-purple-400">
+                <h3 className="font-bold text-lg mb-4 text-red-600">
                   Quick Links
                 </h3>
                 <ul className="space-y-2">
                   <li>
-                    <a href="#" className="hover:text-purple-400">
+                    <a href="#" className="hover:text-red-600">
                       Home
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-purple-400">
+                    <a href="#" className="hover:text-red-600">
                       About Us
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-purple-400">
+                    <a href="#" className="hover:text-red-600">
                       Services
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-purple-400">
+                    <a href="#" className="hover:text-red-600">
                       Contact
                     </a>
                   </li>
@@ -169,7 +169,7 @@ export default function Home() {
 
               {/* Newsletter Section */}
               <div>
-                <h3 className="font-bold text-lg mb-4 text-purple-400">
+                <h3 className="font-bold text-lg mb-4 text-red-600">
                   Stay Updated
                 </h3>
                 <p className="mb-4">
@@ -184,7 +184,7 @@ export default function Home() {
                   />
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-purple-600 text-white rounded-r-lg hover:bg-purple-700 focus:outline-none"
+                    className="px-6 py-2 bg-red-600 text-white rounded-r-lg hover:bg-red-700 focus:outline-none"
                   >
                     Subscribe
                   </button>
@@ -193,7 +193,7 @@ export default function Home() {
 
               {/* Contact Section */}
               <div>
-                <h3 className="font-bold text-lg mb-4 text-purple-400">
+                <h3 className="font-bold text-lg mb-4 text-red-600">
                   Contact Us
                 </h3>
                 <p>Email: support@soulbuddy.com</p>
@@ -204,21 +204,21 @@ export default function Home() {
                     <motion.a
                       href="#"
                       whileHover={{ y: -3 }}
-                      className="hover:text-purple-400"
+                      className="hover:text-red-600"
                     >
                       <Instagram className="h-6 w-6" />
                     </motion.a>
                     <motion.a
                       href="#"
                       whileHover={{ y: -3 }}
-                      className="hover:text-purple-400"
+                      className="hover:text-red-600"
                     >
                       <Twitter className="h-6 w-6" />
                     </motion.a>
                     <motion.a
                       href="#"
                       whileHover={{ y: -3 }}
-                      className="hover:text-purple-400"
+                      className="hover:text-red-600"
                     >
                       <Facebook className="h-6 w-6" />
                     </motion.a>
