@@ -32,7 +32,7 @@ export default function Home() {
             <Heart className="h-16 w-16 text-red-600" />
           </motion.div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Find Your Spiritual Match
+          Discover your destiny with AI
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
             Connect with kindred spirits on your journey to enlightenment
@@ -230,7 +230,7 @@ export default function Home() {
             {/* Bottom Section */}
             <div className="mt-12 pt-8 border-t border-gray-600 text-center">
               <p>
-                © {new Date().getFullYear()} SoulBuddy. All rights reserved. |
+                © {new Date().getFullYear()} SoulBuddy. All rights reserved.
               </p>
             </div>
           </div>
