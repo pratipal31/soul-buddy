@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -14,7 +16,7 @@ import {
 } from "@/components/ui/select";
 
 // Define a list of Indian states and cities
-const statesAndCities = {
+const statesAndCities: { [key: string]: string[] } = {
   "Andhra Pradesh": [
     "Hyderabad",
     "Visakhapatnam",
@@ -176,8 +178,23 @@ const statesAndCities = {
   Puducherry: ["Puducherry", "Auroville", "Karaikal", "Mahe"],
 };
 
+interface FormData {
+  name: string;
+  day: string;
+  month: string;
+  year: string;
+  time: string;
+  dontKnowTime: boolean;
+  state: string;
+  city: string;
+}
+
 export default function CosmicForm() {
-  const [formData, setFormData] = useState({
+  const router = useRouter();
+  const { user, isLoaded } = useUser();
+  const [isRegistered, setIsRegistered] = useState<boolean | null>(null);
+
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     day: "",
     month: "January",
@@ -188,8 +205,37 @@ export default function CosmicForm() {
     city: "",
   });
 
+  useEffect(() => {
+    const checkRegistration = async () => {
+      if (!user?.id) return;
+
+      try {
+        const response = await fetch(
+          `/api/checkRegistration?userId=${user.id}`
+        );
+        const data = await response.json();
+        setIsRegistered(data.isRegistered);
+
+        if (data.isRegistered) {
+          router.push("/dashboard"); // Redirect to dashboard if already registered
+        }
+      } catch (error) {
+        console.error("Error checking registration:", error);
+      }
+    };
+
+    if (isLoaded && user) {
+      checkRegistration();
+    }
+  }, [user, isLoaded, router]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!user?.id) {
+      console.error("No user ID found");
+      return;
+    }
 
     try {
       const response = await fetch("/api/FormData", {
@@ -197,11 +243,15 @@ export default function CosmicForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          userId: user.id, // Include the Clerk user ID
+        }),
       });
 
       if (response.ok) {
         console.log("Form data saved successfully!");
+        router.push("/dashboard"); // Redirect after successful registration
       } else {
         console.error("Failed to save form data.");
       }
@@ -209,6 +259,11 @@ export default function CosmicForm() {
       console.error("Error while saving data:", error);
     }
   };
+
+  // Show loading state while checking registration
+  if (!isLoaded || isRegistered === null) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div
@@ -345,7 +400,7 @@ export default function CosmicForm() {
                 className="border-gray-400 data-[state=checked]:bg-red-600"
               />
               <label htmlFor="dontKnowTime" className="text-sm text-gray-300">
-                I don't know my time of birth
+                I don&apos;t know my time of birth
               </label>
             </div>
           </div>
@@ -389,7 +444,7 @@ export default function CosmicForm() {
                   </SelectTrigger>
                   <SelectContent>
                     {formData.state &&
-                      statesAndCities[formData.state].map((city) => (
+                      statesAndCities[formData.state]?.map((city) => (
                         <SelectItem key={city} value={city}>
                           {city}
                         </SelectItem>

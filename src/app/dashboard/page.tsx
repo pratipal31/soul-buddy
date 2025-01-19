@@ -1,23 +1,47 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useUser } from '@clerk/nextjs'
-import { Sun, Moon, Star, Zap, MessageCircle, Settings, ChevronRight, Gem, Feather, Brain, Music, Sunrise, Activity, Check, DollarSign, Heart, X } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Image from 'next/image'
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useUser } from "@clerk/nextjs";
+import {
+  Sun,
+  Moon,
+  Star,
+  Zap,
+  MessageCircle,
+  Settings,
+  ChevronRight,
+  Gem,
+  Feather,
+  Brain,
+  Music,
+  Sunrise,
+  Activity,
+  Check,
+  DollarSign,
+  Heart,
+  X,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-}
+  transition: { duration: 0.6 },
+};
 
 const Dashboard: React.FC = () => {
-  const { user } = useUser()
-  const [activeTab, setActiveTab] = useState("horoscope")
+  const { user } = useUser();
+  const [activeTab, setActiveTab] = useState("horoscope");
 
   return (
     <div className="min-h-screen bg-[url('/cosmic-background.jpg')] bg-cover bg-center text-black p-8 overflow-x-hidden">
@@ -28,19 +52,31 @@ const Dashboard: React.FC = () => {
         transition={{ duration: 1 }}
         className="relative z-10 max-w-7xl mx-auto"
       >
-        <motion.h1 
+        <motion.h1
           className="text-6xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 drop-shadow-lg"
           {...fadeInUp}
         >
-          Welcome back, {user?.firstName || 'Cosmic Seeker'}!
+          Welcome back, {user?.firstName || "Cosmic Seeker"}!
         </motion.h1>
 
-        <Tabs defaultValue="horoscope" className="w-full" onValueChange={setActiveTab}>
+        <Tabs
+          defaultValue="horoscope"
+          className="w-full"
+          onValueChange={setActiveTab}
+        >
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-white/20 backdrop-blur-md rounded-lg mb-6 p-1">
-            <AnimatedTabsTrigger value="horoscope" icon={<Sun />}>Horoscope</AnimatedTabsTrigger>
-            <AnimatedTabsTrigger value="kundali" icon={<Star />}>Kundali</AnimatedTabsTrigger>
-            <AnimatedTabsTrigger value="recommendations" icon={<Gem />}>Recommendations</AnimatedTabsTrigger>
-            <AnimatedTabsTrigger value="spiritual" icon={<Brain />}>Spiritual</AnimatedTabsTrigger>
+            <AnimatedTabsTrigger value="horoscope" icon={<Sun />}>
+              Horoscope
+            </AnimatedTabsTrigger>
+            <AnimatedTabsTrigger value="kundali" icon={<Star />}>
+              Kundali
+            </AnimatedTabsTrigger>
+            <AnimatedTabsTrigger value="recommendations" icon={<Gem />}>
+              Recommendations
+            </AnimatedTabsTrigger>
+            <AnimatedTabsTrigger value="spiritual" icon={<Brain />}>
+              Spiritual
+            </AnimatedTabsTrigger>
           </TabsList>
           <AnimatePresence mode="wait">
             <motion.div
@@ -67,27 +103,50 @@ const Dashboard: React.FC = () => {
         </Tabs>
 
         {/* Quick Actions */}
-        <motion.div 
+        <motion.div
           className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
           variants={{
             initial: { opacity: 0 },
-            animate: { opacity: 1, transition: { staggerChildren: 0.1 } }
+            animate: { opacity: 1, transition: { staggerChildren: 0.1 } },
           }}
           initial="initial"
           animate="animate"
         >
-          <QuickActionButton icon={<Zap />} text="Full Kundali Analysis" href="/kundali" />
-          <QuickActionButton icon={<Star />} text="Detailed Recommendations" href="/recommendations" />
-          <QuickActionButton icon={<MessageCircle />} text="Chat with Cosmic AI" href="/chat" />
-          <QuickActionButton icon={<Settings />} text="Cosmic Settings" href="/settings" />
+          <QuickActionButton
+            icon={<Zap />}
+            text="Full Kundali Analysis"
+            href="/kundali"
+          />
+          <QuickActionButton
+            icon={<Star />}
+            text="Detailed Recommendations"
+            href="/recommendations"
+          />
+          <QuickActionButton
+            icon={<MessageCircle />}
+            text="Chat with Cosmic AI"
+            href="/chat"
+          />
+          <QuickActionButton
+            icon={<Settings />}
+            text="Cosmic Settings"
+            href="/settings"
+          />
         </motion.div>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-const AnimatedTabsTrigger: React.FC<{ value: string, icon: React.ReactNode, children: React.ReactNode }> = ({ value, icon, children }) => (
-  <TabsTrigger value={value} className="flex items-center justify-center space-x-2 py-2 px-4 rounded-md transition-all duration-200 hover:bg-white/30">
+const AnimatedTabsTrigger: React.FC<{
+  value: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}> = ({ value, icon, children }) => (
+  <TabsTrigger
+    value={value}
+    className="flex items-center justify-center space-x-2 py-2 px-4 rounded-md transition-all duration-200 hover:bg-white/30"
+  >
     <motion.span
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
@@ -97,7 +156,7 @@ const AnimatedTabsTrigger: React.FC<{ value: string, icon: React.ReactNode, chil
     </motion.span>
     <span className="font-medium">{children}</span>
   </TabsTrigger>
-)
+);
 
 const HoroscopeContent: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -106,9 +165,19 @@ const HoroscopeContent: React.FC = () => (
       title="Today's Horoscope"
       content={
         <div>
-          <p className="text-lg mb-4 leading-relaxed">The stars align in your favor today. Expect positive energy and new opportunities in your career and personal relationships. Your creativity is at its peak - use it wisely!</p>
+          <p className="text-lg mb-4 leading-relaxed">
+            The stars align in your favor today. Expect positive energy and new
+            opportunities in your career and personal relationships. Your
+            creativity is at its peak - use it wisely!
+          </p>
           <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg">
-            <Image src="/horoscope-chart.png" alt="Daily Horoscope Chart" layout="fill" objectFit="cover" className="transition-transform duration-300 hover:scale-110" />
+            <Image
+              src="/horoscope-chart.png"
+              alt="Daily Horoscope Chart"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 hover:scale-110"
+            />
           </div>
         </div>
       }
@@ -118,26 +187,38 @@ const HoroscopeContent: React.FC = () => (
       title="Monthly Forecast"
       content={
         <div>
-          <p className="mb-4 leading-relaxed">This month brings significant growth in your spiritual journey. Key dates:</p>
+          <p className="mb-4 leading-relaxed">
+            This month brings significant growth in your spiritual journey. Key
+            dates:
+          </p>
           <ul className="space-y-3">
             <li className="flex items-center bg-white/10 p-2 rounded-md">
               <Sunrise className="w-5 h-5 mr-3 text-pink-400" />
-              <span><strong className="text-pink-300">15th:</strong> Unexpected financial gain</span>
+              <span>
+                <strong className="text-pink-300">15th:</strong> Unexpected
+                financial gain
+              </span>
             </li>
             <li className="flex items-center bg-white/10 p-2 rounded-md">
               <Sunrise className="w-5 h-5 mr-3 text-pink-400" />
-              <span><strong className="text-pink-300">22nd:</strong> Breakthrough in personal relationships</span>
+              <span>
+                <strong className="text-pink-300">22nd:</strong> Breakthrough in
+                personal relationships
+              </span>
             </li>
             <li className="flex items-center bg-white/10 p-2 rounded-md">
               <Sunrise className="w-5 h-5 mr-3 text-pink-400" />
-              <span><strong className="text-pink-300">28th:</strong> Perfect day for starting new projects</span>
+              <span>
+                <strong className="text-pink-300">28th:</strong> Perfect day for
+                starting new projects
+              </span>
             </li>
           </ul>
         </div>
       }
     />
   </div>
-)
+);
 
 const KundaliContent: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -146,11 +227,25 @@ const KundaliContent: React.FC = () => (
       title="Your Kundali Overview"
       content={
         <div>
-          <p className="mb-4 leading-relaxed">Your birth chart reveals a strong influence of Jupiter in the 10th house, indicating great career potential and public recognition.</p>
+          <p className="mb-4 leading-relaxed">
+            Your birth chart reveals a strong influence of Jupiter in the 10th
+            house, indicating great career potential and public recognition.
+          </p>
           <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg mb-4">
-            <Image src="/kundali-chart.png" alt="Kundali Chart" layout="fill" objectFit="cover" className="transition-transform duration-300 hover:scale-110" />
+            <Image
+              src="/kundali-chart.png"
+              alt="Kundali Chart"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 hover:scale-110"
+            />
           </div>
-          <Button variant="outline" className="w-full mt-4 bg-white/20 hover:bg-white/30 transition-colors duration-200">View Full Kundali</Button>
+          <Button
+            variant="outline"
+            className="w-full mt-4 bg-white/20 hover:bg-white/30 transition-colors duration-200"
+          >
+            View Full Kundali
+          </Button>
         </div>
       }
     />
@@ -170,28 +265,34 @@ const KundaliContent: React.FC = () => (
             <Heart className="w-6 h-6 mr-3 text-red-400" />
             <div>
               <strong className="text-red-300">Relationships:</strong>
-              <p className="text-sm mt-1">Harmony in partnerships after minor challenges</p>
+              <p className="text-sm mt-1">
+                Harmony in partnerships after minor challenges
+              </p>
             </div>
           </li>
           <li className="flex items-center bg-white/10 p-3 rounded-md">
             <Activity className="w-6 h-6 mr-3 text-green-400" />
             <div>
               <strong className="text-green-300">Health:</strong>
-              <p className="text-sm mt-1">Focus on mental well-being this month</p>
+              <p className="text-sm mt-1">
+                Focus on mental well-being this month
+              </p>
             </div>
           </li>
           <li className="flex items-center bg-white/10 p-3 rounded-md">
             <DollarSign className="w-6 h-6 mr-3 text-blue-400" />
             <div>
               <strong className="text-blue-300">Finance:</strong>
-              <p className="text-sm mt-1">Favorable time for long-term investments</p>
+              <p className="text-sm mt-1">
+                Favorable time for long-term investments
+              </p>
             </div>
           </li>
         </ul>
       }
     />
   </div>
-)
+);
 
 const RecommendationsContent: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -200,11 +301,22 @@ const RecommendationsContent: React.FC = () => (
       title="Gemstone Suggestion"
       content={
         <div>
-          <p className="mb-2 font-semibold text-blue-300">Blue Sapphire (Neelam)</p>
+          <p className="mb-2 font-semibold text-blue-300">
+            Blue Sapphire (Neelam)
+          </p>
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
-            <Image src="/blue-sapphire.png" alt="Blue Sapphire" layout="fill" objectFit="cover" className="transition-transform duration-300 hover:scale-110" />
+            <Image
+              src="/blue-sapphire.png"
+              alt="Blue Sapphire"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 hover:scale-110"
+            />
           </div>
-          <p className="text-sm leading-relaxed">Enhances wisdom and brings prosperity. Wear on the middle finger of your right hand for best results.</p>
+          <p className="text-sm leading-relaxed">
+            Enhances wisdom and brings prosperity. Wear on the middle finger of
+            your right hand for best results.
+          </p>
         </div>
       }
     />
@@ -215,9 +327,18 @@ const RecommendationsContent: React.FC = () => (
         <div>
           <p className="mb-2 font-semibold text-purple-300">Surya Namaskar</p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
-            <Image src="/surya-namaskar.png" alt="Surya Namaskar" layout="fill" objectFit="cover" className="transition-transform duration-300 hover:scale-110" />
+            <Image
+              src="/surya-namaskar.png"
+              alt="Surya Namaskar"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 hover:scale-110"
+            />
           </div>
-          <p className="text-sm leading-relaxed">Perform this yoga sequence at sunrise to align your energies with the sun and boost vitality.</p>
+          <p className="text-sm leading-relaxed">
+            Perform this yoga sequence at sunrise to align your energies with
+            the sun and boost vitality.
+          </p>
         </div>
       }
     />
@@ -246,7 +367,7 @@ const RecommendationsContent: React.FC = () => (
       }
     />
   </div>
-)
+);
 
 const SpiritualContent: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -255,27 +376,59 @@ const SpiritualContent: React.FC = () => (
       title="Meditation Focus"
       content={
         <div>
-          <p className="mb-2 font-semibold text-purple-300">Chakra Balancing Meditation</p>
+          <p className="mb-2 font-semibold text-purple-300">
+            Chakra Balancing Meditation
+          </p>
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
-            <Image src="/throat-chakra.png" alt="Throat Chakra" layout="fill" objectFit="cover" className="transition-transform duration-300 hover:scale-110" />
+            <Image
+              src="/throat-chakra.png"
+              alt="Throat Chakra"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 hover:scale-110"
+            />
           </div>
-          <p className="text-sm leading-relaxed mb-4">Focus on your throat chakra today. Visualize a bright blue light as you chant the sound "HAM".</p>
-          <Button variant="outline" className="w-full bg-white/20 hover:bg-white/30 transition-colors duration-200">Start Guided Meditation</Button>
+          <p className="text-sm leading-relaxed mb-4">
+            Focus on your throat chakra today. Visualize a bright blue light as
+            you chant the sound "HAM".
+          </p>
+          <Button
+            variant="outline"
+            className="w-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
+          >
+            Start Guided Meditation
+          </Button>
         </div>
       }
     />
-    
+
     <AnimatedCard
       icon={<Zap className="w-8 h-8 text-yellow-400" />}
       title="Energy Workout"
       content={
         <div>
-          <p className="mb-2 font-semibold text-yellow-300">Kundalini Yoga Sequence</p>
+          <p className="mb-2 font-semibold text-yellow-300">
+            Kundalini Yoga Sequence
+          </p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
-            <Image src="/kundalini-yoga.png" alt="Kundalini Yoga" layout="fill" objectFit="cover" className="transition-transform duration-300 hover:scale-110" />
+            <Image
+              src="/kundalini-yoga.png"
+              alt="Kundalini Yoga"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 hover:scale-110"
+            />
           </div>
-          <p className="text-sm leading-relaxed mb-4">A 20-minute routine to awaken your spiritual energy and align your chakras.</p>
-          <Button variant="outline" className="w-full bg-white/20 hover:bg-white/30 transition-colors duration-200">View Workout</Button>
+          <p className="text-sm leading-relaxed mb-4">
+            A 20-minute routine to awaken your spiritual energy and align your
+            chakras.
+          </p>
+          <Button
+            variant="outline"
+            className="w-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
+          >
+            View Workout
+          </Button>
         </div>
       }
     />
@@ -286,21 +439,36 @@ const SpiritualContent: React.FC = () => (
         <div>
           <p className="mb-2 font-semibold text-blue-300">Cosmic Lullaby</p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
-            <Image src="/cosmic-lullaby.png" alt="Cosmic Lullaby" layout="fill" objectFit="cover" className="transition-transform duration-300 hover:scale-110" />
+            <Image
+              src="/cosmic-lullaby.png"
+              alt="Cosmic Lullaby"
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 hover:scale-110"
+            />
           </div>
-          <p className="text-sm leading-relaxed mb-4">A specially curated playlist of soothing sounds aligned with your current astrological position.</p>
-          <Button variant="outline" className="w-full bg-white/20 hover:bg-white/30 transition-colors duration-200">Play Sleep Sounds</Button>
+          <p className="text-sm leading-relaxed mb-4">
+            A specially curated playlist of soothing sounds aligned with your
+            current astrological position.
+          </p>
+          <Button
+            variant="outline"
+            className="w-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
+          >
+            Play Sleep Sounds
+          </Button>
         </div>
       }
     />
   </div>
-)
+);
 
-const AnimatedCard: React.FC<{ icon: React.ReactNode, title: string, content: React.ReactNode }> = ({ icon, title, content }) => (
-  <motion.div
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-  >
+const AnimatedCard: React.FC<{
+  icon: React.ReactNode;
+  title: string;
+  content: React.ReactNode;
+}> = ({ icon, title, content }) => (
+  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
     <Card className="bg-white/10 backdrop-blur-lg border-none text-black overflow-hidden shadow-lg">
       <CardHeader className="bg-gradient-to-r from-purple-800/50 to-indigo-800/50">
         <CardTitle className="flex items-center space-x-2 text-xl">
@@ -308,17 +476,19 @@ const AnimatedCard: React.FC<{ icon: React.ReactNode, title: string, content: Re
           <span>{title}</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-4">
-        {content}
-      </CardContent>
+      <CardContent className="p-4">{content}</CardContent>
     </Card>
   </motion.div>
-)
+);
 
-const QuickActionButton: React.FC<{ icon: React.ReactNode, text: string, href: string }> = ({ icon, text, href }) => (
+const QuickActionButton: React.FC<{
+  icon: React.ReactNode;
+  text: string;
+  href: string;
+}> = ({ icon, text, href }) => (
   <motion.div variants={fadeInUp}>
-    <Button 
-      variant="outline" 
+    <Button
+      variant="outline"
       className="w-full h-full py-8 bg-gradient-to-br from-purple-800/50 to-indigo-800/50 hover:from-purple-700/60 hover:to-indigo-700/60 backdrop-blur-lg border-none text-black flex flex-col items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"
       asChild
     >
@@ -334,7 +504,6 @@ const QuickActionButton: React.FC<{ icon: React.ReactNode, text: string, href: s
       </a>
     </Button>
   </motion.div>
-)
+);
 
-export default Dashboard
-
+export default Dashboard;
