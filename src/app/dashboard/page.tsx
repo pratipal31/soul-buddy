@@ -470,7 +470,7 @@ const AnimatedCard: React.FC<{
 }> = ({ icon, title, content }) => (
   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
     <Card className="bg-white/10 backdrop-blur-lg border-none text-black overflow-hidden shadow-lg min-h-[370px] flex flex-col justify-between">
-      <CardHeader className="bg-gradient-to-r from-red-900 to-red-600 to-indigo-800/50">
+      <CardHeader className="bg-gradient-to-r from-red-900 to-red-600">
         <CardTitle className="flex items-center space-x-2 text-xl">
           {icon}
           <span>{title}</span>
