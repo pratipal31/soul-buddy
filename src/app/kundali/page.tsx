@@ -1,8 +1,8 @@
 // KundaliPage.tsx
 "use client";
 
-import React, { useState } from 'react';
-import { Loader2, Sun, Moon, Star } from 'lucide-react';
+import React, { useState } from "react";
+import { Loader2, Sun, Moon, Star } from "lucide-react";
 
 interface BirthDetails {
   name: string;
@@ -16,12 +16,12 @@ interface BirthDetails {
 const KundaliPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [birthDetails, setBirthDetails] = useState<BirthDetails>({
-    name: '',
-    dateOfBirth: '',
-    timeOfBirth: '',
-    gender: '',
-    state: '',
-    city: '',
+    name: "",
+    dateOfBirth: "",
+    timeOfBirth: "",
+    gender: "",
+    state: "",
+    city: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,7 +32,9 @@ const KundaliPage: React.FC = () => {
     }, 2000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setBirthDetails({
       ...birthDetails,
       [e.target.name]: e.target.value,
@@ -41,13 +43,13 @@ const KundaliPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-50">
-
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Enhanced Form Container */}
         <div className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 mb-12 backdrop-blur-sm border border-red-100">
-          <h2 className="text-3xl font-bold text-red-900 mb-8 text-center">Generate Your Kundali</h2>
+          <h2 className="text-3xl font-bold text-red-900 mb-8 text-center">
+            Generate Your Kundali
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-8">
-             
             {/* Enhanced Submit Button */}
             <button
               type="submit"
@@ -71,15 +73,21 @@ const KundaliPage: React.FC = () => {
 
         {/* Enhanced Kundali Chart */}
         <div className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 mb-12 backdrop-blur-sm border border-red-100">
-          <h2 className="text-3xl font-bold text-red-900 mb-8 text-center">Your Birth Chart (Kundali)</h2>
+          <h2 className="text-3xl font-bold text-red-900 mb-8 text-center">
+            Your Birth Chart (Kundali)
+          </h2>
           <div className="grid grid-cols-4 gap-1 bg-red-900 p-1 max-w-3xl mx-auto rounded-lg">
             {[...Array(12)].map((_, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="bg-gradient-to-br from-white to-red-50 p-6 min-h-[120px] flex flex-col items-center justify-center text-center rounded-md hover:shadow-inner transition-all duration-300"
               >
-                <span className="text-red-900 font-bold mb-2">House {index + 1}</span>
-                <span className="text-red-700 text-sm">{getHouseName(index + 1)}</span>
+                <span className="text-red-900 font-bold mb-2">
+                  House {index + 1}
+                </span>
+                <span className="text-red-700 text-sm">
+                  {getHouseName(index + 1)}
+                </span>
               </div>
             ))}
           </div>
@@ -136,7 +144,7 @@ const SelectField: React.FC<{
   name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: { value: string; label: string; }[];
+  options: { value: string; label: string }[];
   required?: boolean;
 }> = ({ label, name, value, onChange, options, required }) => (
   <div className="relative">
@@ -148,8 +156,10 @@ const SelectField: React.FC<{
       required={required}
       className="w-full px-4 py-3 border-2 border-red-100 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white transition-all duration-300 outline-none"
     >
-      {options.map(option => (
-        <option key={option.value} value={option.value}>{option.label}</option>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
       ))}
     </select>
   </div>
@@ -170,18 +180,18 @@ const EnhancedFeatureCard: React.FC<{
 
 const getHouseName = (houseNumber: number): string => {
   const houseNames = [
-    'Ascendant',
-    'Wealth',
-    'Communication',
-    'Home',
-    'Creativity',
-    'Health',
-    'Relationships',
-    'Transformation',
-    'Fortune',
-    'Career',
-    'Gains',
-    'Spirituality'
+    "Ascendant",
+    "Wealth",
+    "Communication",
+    "Home",
+    "Creativity",
+    "Health",
+    "Relationships",
+    "Transformation",
+    "Fortune",
+    "Career",
+    "Gains",
+    "Spirituality",
   ];
   return houseNames[houseNumber - 1];
 };
