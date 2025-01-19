@@ -44,6 +44,7 @@ const KundaliPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-50">
+      <title>SoulBuddy</title>
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Enhanced Form Container */}
         <div className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 mb-12 backdrop-blur-sm border border-red-100">

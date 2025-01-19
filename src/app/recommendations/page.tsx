@@ -90,6 +90,7 @@ const RecommendationsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-50">
+        <title>SoulBuddy</title>
       {/* Enhanced Header with Pattern Overlay */}
       <header className="relative py-16 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CiAgPHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0zMCAzMG0tMjggMGEyOCwyOCAwIDEsMSA1NiwwYTI4LDI4IDAgMSwxIC01NiwwIiBzdHJva2U9InJnYmEoMjIwLDM4LDM4LDAuMSkiIGZpbGw9Im5vbmUiLz4KPC9zdmc+')] opacity-20"></div>
