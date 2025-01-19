@@ -26,24 +26,24 @@ const Navbar: React.FC = () => {
           <span>SoulBuddy</span>
         </Link>
 
-        {/* Menu Items (Desktop) */}
-        <div className="hidden md:flex space-x-8 items-center">
-          <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} />
-          <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} />
-          <NavLink href="/recommendations" text="Recommendations" Icon={SunIcon} />
-
-          {/* Authentication Buttons */}
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button className="bg-yellow-400 text-red-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300">
-                Sign In
-              </button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
+        {/* Menu Items (Desktop) - Only visible if signed in */}
+        <SignedIn>
+          <div className="hidden md:flex space-x-8 items-center">
+            <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} />
+            <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} />
+            <NavLink href="/recommendations" text="Recommendations" Icon={SunIcon} />
             <UserButton />
-          </SignedIn>
-        </div>
+          </div>
+        </SignedIn>
+
+        {/* Authentication Buttons (Desktop) */}
+        <SignedOut>
+          <SignInButton mode="modal">
+            <button className="bg-yellow-400 text-red-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300">
+              Sign In
+            </button>
+          </SignInButton>
+        </SignedOut>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -61,11 +61,7 @@ const Navbar: React.FC = () => {
               stroke="currentColor"
               className="h-7 w-7"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
             <svg
@@ -76,60 +72,26 @@ const Navbar: React.FC = () => {
               stroke="currentColor"
               className="h-7 w-7"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           )}
         </button>
 
-        {/* Mobile Menu */}
-        {/* Mobile Menu */}
-<div
-  className={`absolute top-16 left-0 w-full bg-gradient-to-r from-red-600 to-red-700 shadow-md z-10 md:hidden transform ${
-    isMenuOpen ? "translate-y-0" : "-translate-y-full"
-  } transition-transform duration-300 ease-in-out`}
->
-  <div className="flex flex-col items-center space-y-6 py-6 px-4">
-    {/* Navigation Links */}
-    <NavLink
-      href="/dashboard"
-      text="Dashboard"
-      Icon={HomeIcon}
-      closeMenu={() => setIsMenuOpen(false)}
-    />
-    <NavLink
-      href="/kundali"
-      text="Kundali"
-      Icon={UserCircleIcon}
-      closeMenu={() => setIsMenuOpen(false)}
-    />
-    <NavLink
-      href="/recommendations"
-      text="Recommendations"
-      Icon={SunIcon}
-      closeMenu={() => setIsMenuOpen(false)}
-    />
-
-    {/* Divider */}
-    <div className="border-t border-yellow-400 w-full my-4"></div>
-
-    {/* Authentication Buttons */}
-    <SignedOut>
-      <SignInButton mode="modal">
-        <button className="bg-yellow-400 text-red-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 w-full">
-          Sign In
-        </button>
-      </SignInButton>
-    </SignedOut>
-    <SignedIn>
-      <UserButton />
-    </SignedIn>
-  </div>
-</div>
-
+        {/* Mobile Menu - Only visible if signed in */}
+        <SignedIn>
+          <div
+            className={`absolute top-16 left-0 w-full bg-gradient-to-r from-red-600 to-red-700 shadow-md z-10 md:hidden transform ${
+              isMenuOpen ? "translate-y-0" : "-translate-y-full"
+            } transition-transform duration-300 ease-in-out`}
+          >
+            <div className="flex flex-col items-center space-y-6 py-6 px-4">
+              <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} closeMenu={() => setIsMenuOpen(false)} />
+              <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} closeMenu={() => setIsMenuOpen(false)} />
+              <NavLink href="/recommendations" text="Recommendations" Icon={SunIcon} closeMenu={() => setIsMenuOpen(false)} />
+              <UserButton />
+            </div>
+          </div>
+        </SignedIn>
       </nav>
     </header>
   );
