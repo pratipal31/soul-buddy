@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 interface Recommendation {
-  type: 'puja' | 'gemstone' | 'ritual' | 'meditation';
+  type: "puja" | "gemstone" | "ritual" | "meditation";
   title: string;
   description: string;
   benefits: string[];
@@ -46,7 +46,9 @@ const RecommendationsPage: React.FC = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-4 text-red-800 bg-gradient-to-r from-red-800 via-red-700 to-red-800 text-transparent bg-clip-text">
             Spiritual Recommendations
           </h1>
-          <p className="text-xl text-red-600 font-medium">Personalized guidance for your divine journey</p>
+          <p className="text-xl text-red-600 font-medium">
+            Personalized guidance for your divine journey
+          </p>
         </div>
       </header>
 

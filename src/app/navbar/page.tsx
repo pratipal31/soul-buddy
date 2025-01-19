@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import Link from "next/link";
 import { useState } from "react";
-import {
-  HomeIcon,
-  UserCircleIcon,
-  SunIcon,
-} from "@heroicons/react/24/outline";
+import { HomeIcon, UserCircleIcon, SunIcon } from "@heroicons/react/24/outline";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const Navbar: React.FC = () => {
