@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import Link from "next/link";
 import { useState } from "react";
-import {
-  HomeIcon,
-  UserCircleIcon,
-  SunIcon,
-} from "@heroicons/react/24/outline";
+import { HomeIcon, UserCircleIcon, SunIcon } from "@heroicons/react/24/outline";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 const Navbar: React.FC = () => {
@@ -30,7 +25,11 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex space-x-8 items-center">
           <NavLink href="/dashboard" text="Dashboard" Icon={HomeIcon} />
           <NavLink href="/kundali" text="Kundali" Icon={UserCircleIcon} />
-          <NavLink href="/recommendations" text="Recommendations" Icon={SunIcon} />
+          <NavLink
+            href="/recommendations"
+            text="Recommendations"
+            Icon={SunIcon}
+          />
 
           {/* Authentication Buttons */}
           <SignedOut>
@@ -87,49 +86,48 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         {/* Mobile Menu */}
-<div
-  className={`absolute top-16 left-0 w-full bg-gradient-to-r from-red-600 to-red-700 shadow-md z-10 md:hidden transform ${
-    isMenuOpen ? "translate-y-0" : "-translate-y-full"
-  } transition-transform duration-300 ease-in-out`}
->
-  <div className="flex flex-col items-center space-y-6 py-6 px-4">
-    {/* Navigation Links */}
-    <NavLink
-      href="/dashboard"
-      text="Dashboard"
-      Icon={HomeIcon}
-      closeMenu={() => setIsMenuOpen(false)}
-    />
-    <NavLink
-      href="/kundali"
-      text="Kundali"
-      Icon={UserCircleIcon}
-      closeMenu={() => setIsMenuOpen(false)}
-    />
-    <NavLink
-      href="/recommendations"
-      text="Recommendations"
-      Icon={SunIcon}
-      closeMenu={() => setIsMenuOpen(false)}
-    />
+        <div
+          className={`absolute top-16 left-0 w-full bg-gradient-to-r from-red-600 to-red-700 shadow-md z-10 md:hidden transform ${
+            isMenuOpen ? "translate-y-0" : "-translate-y-full"
+          } transition-transform duration-300 ease-in-out`}
+        >
+          <div className="flex flex-col items-center space-y-6 py-6 px-4">
+            {/* Navigation Links */}
+            <NavLink
+              href="/dashboard"
+              text="Dashboard"
+              Icon={HomeIcon}
+              closeMenu={() => setIsMenuOpen(false)}
+            />
+            <NavLink
+              href="/kundali"
+              text="Kundali"
+              Icon={UserCircleIcon}
+              closeMenu={() => setIsMenuOpen(false)}
+            />
+            <NavLink
+              href="/recommendations"
+              text="Recommendations"
+              Icon={SunIcon}
+              closeMenu={() => setIsMenuOpen(false)}
+            />
 
-    {/* Divider */}
-    <div className="border-t border-yellow-400 w-full my-4"></div>
+            {/* Divider */}
+            <div className="border-t border-yellow-400 w-full my-4"></div>
 
-    {/* Authentication Buttons */}
-    <SignedOut>
-      <SignInButton mode="modal">
-        <button className="bg-yellow-400 text-red-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 w-full">
-          Sign In
-        </button>
-      </SignInButton>
-    </SignedOut>
-    <SignedIn>
-      <UserButton />
-    </SignedIn>
-  </div>
-</div>
-
+            {/* Authentication Buttons */}
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="bg-yellow-400 text-red-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-300 w-full">
+                  Sign In
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+        </div>
       </nav>
     </header>
   );

@@ -1,11 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // RecommendationsPage.tsx
 "use client";
 
-import React, { useState } from 'react';
-import { Sun, Moon, Star, Clock, Heart, Flame, Gem, CloudMoon } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Sun,
+  Moon,
+  Star,
+  Clock,
+  Heart,
+  Flame,
+  Gem,
+  CloudMoon,
+} from "lucide-react";
 
 interface Recommendation {
-  type: 'puja' | 'gemstone' | 'ritual' | 'meditation';
+  type: "puja" | "gemstone" | "ritual" | "meditation";
   title: string;
   description: string;
   benefits: string[];
@@ -14,54 +24,68 @@ interface Recommendation {
 }
 
 const RecommendationsPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+  const [activeTab, setActiveTab] = useState<"daily" | "weekly" | "monthly">(
+    "daily"
+  );
 
   const recommendations: Recommendation[] = [
     {
-      type: 'puja',
-      title: '✨ Ganesh Puja',
-      description: 'A powerful ritual to remove obstacles and bring success in your endeavors',
+      type: "puja",
+      title: "✨ Ganesh Puja",
+      description:
+        "A powerful ritual to remove obstacles and bring success in your endeavors",
       benefits: [
-        'Removes obstacles from your life path',
-        'Brings divine wisdom and mental clarity',
-        'Enhances business prospects and success'
+        "Removes obstacles from your life path",
+        "Brings divine wisdom and mental clarity",
+        "Enhances business prospects and success",
       ],
-      timing: 'Best performed during sunrise or early morning',
-      items: ['Fresh red flowers', 'Sweet modak', 'Yellow silk cloth', 'Pure incense sticks']
+      timing: "Best performed during sunrise or early morning",
+      items: [
+        "Fresh red flowers",
+        "Sweet modak",
+        "Yellow silk cloth",
+        "Pure incense sticks",
+      ],
     },
     {
-      type: 'gemstone',
-      title: '💎 Red Coral (Moonga)',
-      description: 'Sacred gemstone that strengthens Mars energy in your birth chart',
+      type: "gemstone",
+      title: "💎 Red Coral (Moonga)",
+      description:
+        "Sacred gemstone that strengthens Mars energy in your birth chart",
       benefits: [
-        'Boosts confidence and inner strength',
-        'Enhances leadership and decision-making abilities',
-        'Provides protection against negative energies'
-      ]
+        "Boosts confidence and inner strength",
+        "Enhances leadership and decision-making abilities",
+        "Provides protection against negative energies",
+      ],
     },
     {
-      type: 'meditation',
-      title: '🧘‍♂️ Chakra Meditation',
-      description: 'Ancient practice to balance your vital energy centers',
+      type: "meditation",
+      title: "🧘‍♂️ Chakra Meditation",
+      description: "Ancient practice to balance your vital energy centers",
       benefits: [
-        'Harmonizes spiritual and physical energies',
-        'Enhances mental clarity and focus',
-        'Brings emotional balance and peace'
+        "Harmonizes spiritual and physical energies",
+        "Enhances mental clarity and focus",
+        "Brings emotional balance and peace",
       ],
-      timing: 'Practice during sunrise or sunset for optimal benefits'
+      timing: "Practice during sunrise or sunset for optimal benefits",
     },
     {
-      type: 'ritual',
-      title: '🕉️ Rudra Abhishek',
-      description: 'Sacred ritual to invoke the blessings of Lord Shiva',
+      type: "ritual",
+      title: "🕉️ Rudra Abhishek",
+      description: "Sacred ritual to invoke the blessings of Lord Shiva",
       benefits: [
-        'Cleanses negative karmic energies',
-        'Brings divine peace and prosperity',
-        'Strengthens relationships and family bonds'
+        "Cleanses negative karmic energies",
+        "Brings divine peace and prosperity",
+        "Strengthens relationships and family bonds",
       ],
-      timing: 'Most auspicious on Monday mornings',
-      items: ['Pure milk', 'Sacred honey', 'Holy Gangajal', 'Fresh bael leaves']
-    }
+      timing: "Most auspicious on Monday mornings",
+      items: [
+        "Pure milk",
+        "Sacred honey",
+        "Holy Gangajal",
+        "Fresh bael leaves",
+      ],
+    },
   ];
 
   return (
@@ -78,7 +102,9 @@ const RecommendationsPage: React.FC = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-4 text-red-800 bg-gradient-to-r from-red-800 via-red-700 to-red-800 text-transparent bg-clip-text">
             Spiritual Recommendations
           </h1>
-          <p className="text-xl text-red-600 font-medium">Personalized guidance for your divine journey</p>
+          <p className="text-xl text-red-600 font-medium">
+            Personalized guidance for your divine journey
+          </p>
         </div>
       </header>
 
@@ -86,14 +112,14 @@ const RecommendationsPage: React.FC = () => {
         {/* Enhanced Time Period Selector */}
         <div className="flex justify-center mb-12">
           <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-1.5 inline-flex space-x-1">
-            {['daily', 'weekly', 'monthly'].map((period) => (
+            {["daily", "weekly", "monthly"].map((period) => (
               <button
                 key={period}
                 onClick={() => setActiveTab(period as any)}
                 className={`px-8 py-3 rounded-lg font-medium transition-all duration-300 ${
                   activeTab === period
-                    ? 'bg-gradient-to-r from-red-800 to-red-700 text-white shadow-md'
-                    : 'text-red-800 hover:bg-red-50'
+                    ? "bg-gradient-to-r from-red-800 to-red-700 text-white shadow-md"
+                    : "text-red-800 hover:bg-red-50"
                 }`}
               >
                 {period.charAt(0).toUpperCase() + period.slice(1)}
@@ -147,16 +173,18 @@ const RecommendationsPage: React.FC = () => {
   );
 };
 
-const RecommendationCard: React.FC<{ recommendation: Recommendation }> = ({ recommendation }) => {
+const RecommendationCard: React.FC<{ recommendation: Recommendation }> = ({
+  recommendation,
+}) => {
   const getIcon = () => {
     switch (recommendation.type) {
-      case 'puja':
+      case "puja":
         return <Flame className="w-8 h-8 text-red-600" />;
-      case 'gemstone':
+      case "gemstone":
         return <Gem className="w-8 h-8 text-red-600" />;
-      case 'meditation':
+      case "meditation":
         return <CloudMoon className="w-8 h-8 text-red-600" />;
-      case 'ritual':
+      case "ritual":
         return <Star className="w-8 h-8 text-red-600" />;
     }
   };
@@ -167,10 +195,14 @@ const RecommendationCard: React.FC<{ recommendation: Recommendation }> = ({ reco
         <div className="p-2 rounded-lg bg-red-50 group-hover:bg-red-100 transition-colors duration-300">
           {getIcon()}
         </div>
-        <h3 className="text-2xl font-bold text-red-900 ml-4">{recommendation.title}</h3>
+        <h3 className="text-2xl font-bold text-red-900 ml-4">
+          {recommendation.title}
+        </h3>
       </div>
-      <p className="text-red-700 mb-6 leading-relaxed">{recommendation.description}</p>
-      
+      <p className="text-red-700 mb-6 leading-relaxed">
+        {recommendation.description}
+      </p>
+
       <div className="space-y-6">
         <div>
           <h4 className="font-semibold text-red-800 mb-3">✨ Benefits:</h4>
@@ -183,17 +215,19 @@ const RecommendationCard: React.FC<{ recommendation: Recommendation }> = ({ reco
             ))}
           </ul>
         </div>
-        
+
         {recommendation.timing && (
           <div className="mt-4">
             <h4 className="font-semibold text-red-800 mb-3">⏰ Timing:</h4>
             <p className="text-red-700">{recommendation.timing}</p>
           </div>
         )}
-        
+
         {recommendation.items && (
           <div className="mt-4">
-            <h4 className="font-semibold text-red-800 mb-3">🔮 Required Items:</h4>
+            <h4 className="font-semibold text-red-800 mb-3">
+              🔮 Required Items:
+            </h4>
             <ul className="space-y-2">
               {recommendation.items.map((item, index) => (
                 <li key={index} className="flex items-start">
