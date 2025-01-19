@@ -161,7 +161,7 @@ const AnimatedTabsTrigger: React.FC<{
 const HoroscopeContent: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
     <AnimatedCard
-      icon={<Sun className="w-8 h-8 text-yellow-400" />}
+      icon={<Sun className="w-8 h-8 text-red-400" />}
       title="Today's Horoscope"
       content={
         <div>
@@ -191,9 +191,9 @@ const HoroscopeContent: React.FC = () => (
             This month brings significant growth in your spiritual journey. Key
             dates:
           </p>
-          <ul className="space-y-3">
+          <ul className="space-y-7">
             <li className="flex items-center bg-white/10 p-2 rounded-md">
-              <Sunrise className="w-5 h-5 mr-3 text-pink-400" />
+              <Sunrise className="w-5 h-5 mr-3 text-red-400" />
               <span>
                 <strong className="text-pink-300">15th:</strong> Unexpected
                 financial gain
@@ -346,7 +346,7 @@ const RecommendationsContent: React.FC = () => (
       icon={<Star className="w-8 h-8 text-yellow-400" />}
       title="Do's and Don'ts"
       content={
-        <ul className="space-y-3">
+        <ul className="space-y-5">
           <li className="flex items-center bg-white/10 p-2 rounded-md">
             <Check className="w-5 h-5 mr-2 text-green-400" />
             <span className="text-sm">Wear light blue colors</span>
@@ -379,7 +379,7 @@ const SpiritualContent: React.FC = () => (
           <p className="mb-2 font-semibold text-red-600 h-14">
             Chakra Balancing Meditation
           </p>
-          <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
+          <div className="relative w-32 h-40 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
             <Image
               src="/chakra.png"
               alt="Throat Chakra"
