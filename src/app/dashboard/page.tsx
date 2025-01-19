@@ -159,7 +159,7 @@ const AnimatedTabsTrigger: React.FC<{
 );
 
 const HoroscopeContent: React.FC = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
     <AnimatedCard
       icon={<Sun className="w-8 h-8 text-yellow-400" />}
       title="Today's Horoscope"
@@ -221,7 +221,7 @@ const HoroscopeContent: React.FC = () => (
 );
 
 const KundaliContent: React.FC = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
     <AnimatedCard
       icon={<Zap className="w-8 h-8 text-yellow-400" />}
       title="Your Kundali Overview"
@@ -295,7 +295,7 @@ const KundaliContent: React.FC = () => (
 );
 
 const RecommendationsContent: React.FC = () => (
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
     <AnimatedCard
       icon={<Gem className="w-8 h-8 text-blue-400" />}
       title="Gemstone Suggestion"
@@ -370,7 +370,7 @@ const RecommendationsContent: React.FC = () => (
 );
 
 const SpiritualContent: React.FC = () => (
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
     <AnimatedCard
       icon={<Brain className="w-8 h-8 text-purple-400" />}
       title="Meditation Focus"
