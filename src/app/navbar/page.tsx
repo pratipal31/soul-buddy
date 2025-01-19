@@ -16,6 +16,7 @@ const Navbar: React.FC = () => {
 
   return (
     <header className="bg-gradient-to-r from-red-900 to-red-600 shadow-lg">
+      <title>SoulBuddy</title>
       <nav className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link

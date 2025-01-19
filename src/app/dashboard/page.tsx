@@ -45,6 +45,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[url('/cosmic-background.jpg')] bg-cover bg-center text-black p-8 overflow-x-hidden">
+      <title>SoulBuddy</title>
       <div className="absolute"></div>
       <motion.div
         initial={{ opacity: 0 }}
