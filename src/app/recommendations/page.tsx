@@ -1,8 +1,11 @@
-// RecommendationsPage.tsx
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Star, Clock, Heart, Flame, Gem, CloudMoon } from 'lucide-react';
+import { RecommendationCard } from './recommendation-card';
+import { TimelineItem } from './timeline-item'
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 interface Recommendation {
   type: 'puja' | 'gemstone' | 'ritual' | 'meditation';
@@ -15,58 +18,22 @@ interface Recommendation {
 
 const RecommendationsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
 
-  const recommendations: Recommendation[] = [
-    {
-      type: 'puja',
-      title: '✨ Ganesh Puja',
-      description: 'A powerful ritual to remove obstacles and bring success in your endeavors',
-      benefits: [
-        'Removes obstacles from your life path',
-        'Brings divine wisdom and mental clarity',
-        'Enhances business prospects and success'
-      ],
-      timing: 'Best performed during sunrise or early morning',
-      items: ['Fresh red flowers', 'Sweet modak', 'Yellow silk cloth', 'Pure incense sticks']
-    },
-    {
-      type: 'gemstone',
-      title: '💎 Red Coral (Moonga)',
-      description: 'Sacred gemstone that strengthens Mars energy in your birth chart',
-      benefits: [
-        'Boosts confidence and inner strength',
-        'Enhances leadership and decision-making abilities',
-        'Provides protection against negative energies'
-      ]
-    },
-    {
-      type: 'meditation',
-      title: '🧘‍♂️ Chakra Meditation',
-      description: 'Ancient practice to balance your vital energy centers',
-      benefits: [
-        'Harmonizes spiritual and physical energies',
-        'Enhances mental clarity and focus',
-        'Brings emotional balance and peace'
-      ],
-      timing: 'Practice during sunrise or sunset for optimal benefits'
-    },
-    {
-      type: 'ritual',
-      title: '🕉️ Rudra Abhishek',
-      description: 'Sacred ritual to invoke the blessings of Lord Shiva',
-      benefits: [
-        'Cleanses negative karmic energies',
-        'Brings divine peace and prosperity',
-        'Strengthens relationships and family bonds'
-      ],
-      timing: 'Most auspicious on Monday mornings',
-      items: ['Pure milk', 'Sacred honey', 'Holy Gangajal', 'Fresh bael leaves']
-    }
-  ];
+  useEffect(() => {
+    // Simulating API call to fetch recommendations
+    const fetchRecommendations = async () => {
+      // In a real app, this would be an API call
+      const response = await fetch(`/api/recommendations?period=${activeTab}`);
+      const data = await response.json();
+      setRecommendations(data);
+    };
+
+    fetchRecommendations();
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-50">
-        <title>SoulBuddy</title>
       {/* Enhanced Header with Pattern Overlay */}
       <header className="relative py-16 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CiAgPHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0zMCAzMG0tMjggMGEyOCwyOCAwIDEsMSA1NiwwYTI4LDI4IDAgMSwxIC01NiwwIiBzdHJva2U9InJnYmEoMjIwLDM4LDM4LDAuMSkiIGZpbGw9Im5vbmUiLz4KPC9zdmc+')] opacity-20"></div>
@@ -85,23 +52,13 @@ const RecommendationsPage: React.FC = () => {
 
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Enhanced Time Period Selector */}
-        <div className="flex justify-center mb-12">
-          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-1.5 inline-flex space-x-1">
-            {['daily', 'weekly', 'monthly'].map((period) => (
-              <button
-                key={period}
-                onClick={() => setActiveTab(period as any)}
-                className={`px-8 py-3 rounded-lg font-medium transition-all duration-300 ${
-                  activeTab === period
-                    ? 'bg-gradient-to-r from-red-800 to-red-700 text-white shadow-md'
-                    : 'text-red-800 hover:bg-red-50'
-                }`}
-              >
-                {period.charAt(0).toUpperCase() + period.slice(1)}
-              </button>
-            ))}
-          </div>
-        </div>
+        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'daily' | 'weekly' | 'monthly')} className="mb-12">
+          <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto">
+            <TabsTrigger value="daily">Daily</TabsTrigger>
+            <TabsTrigger value="weekly">Weekly</TabsTrigger>
+            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+          </TabsList>
+        </Tabs>
 
         {/* Enhanced Recommendations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -148,82 +105,5 @@ const RecommendationsPage: React.FC = () => {
   );
 };
 
-const RecommendationCard: React.FC<{ recommendation: Recommendation }> = ({ recommendation }) => {
-  const getIcon = () => {
-    switch (recommendation.type) {
-      case 'puja':
-        return <Flame className="w-8 h-8 text-red-600" />;
-      case 'gemstone':
-        return <Gem className="w-8 h-8 text-red-600" />;
-      case 'meditation':
-        return <CloudMoon className="w-8 h-8 text-red-600" />;
-      case 'ritual':
-        return <Star className="w-8 h-8 text-red-600" />;
-    }
-  };
-
-  return (
-    <div className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-500 border border-red-100 hover:border-red-200">
-      <div className="flex items-center mb-6">
-        <div className="p-2 rounded-lg bg-red-50 group-hover:bg-red-100 transition-colors duration-300">
-          {getIcon()}
-        </div>
-        <h3 className="text-2xl font-bold text-red-900 ml-4">{recommendation.title}</h3>
-      </div>
-      <p className="text-red-700 mb-6 leading-relaxed">{recommendation.description}</p>
-      
-      <div className="space-y-6">
-        <div>
-          <h4 className="font-semibold text-red-800 mb-3">✨ Benefits:</h4>
-          <ul className="space-y-2">
-            {recommendation.benefits.map((benefit, index) => (
-              <li key={index} className="flex items-start">
-                <span className="text-red-500 mr-2">•</span>
-                <span className="text-red-700">{benefit}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        {recommendation.timing && (
-          <div className="mt-4">
-            <h4 className="font-semibold text-red-800 mb-3">⏰ Timing:</h4>
-            <p className="text-red-700">{recommendation.timing}</p>
-          </div>
-        )}
-        
-        {recommendation.items && (
-          <div className="mt-4">
-            <h4 className="font-semibold text-red-800 mb-3">🔮 Required Items:</h4>
-            <ul className="space-y-2">
-              {recommendation.items.map((item, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-red-500 mr-2">•</span>
-                  <span className="text-red-700">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const TimelineItem: React.FC<{
-  time: string;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}> = ({ time, title, description, icon }) => (
-  <div className="flex items-start space-x-4 p-4 rounded-lg hover:bg-red-50 transition-colors duration-300">
-    <div className="flex-shrink-0 w-20 text-red-800 font-medium">{time}</div>
-    <div className="flex-shrink-0 p-2 rounded-lg bg-red-50">{icon}</div>
-    <div>
-      <h3 className="font-semibold text-red-900 mb-1">{title}</h3>
-      <p className="text-red-700">{description}</p>
-    </div>
-  </div>
-);
-
 export default RecommendationsPage;
+
