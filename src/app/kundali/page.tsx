@@ -1,101 +1,97 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// KundaliPage.tsx
 "use client";
 
-import React, { useState } from "react";
-import { Loader2, Sun, Moon, Star } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Loader2, Sun, Moon, Star, RefreshCw } from 'lucide-react';
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-interface BirthDetails {
-  name: string;
-  dateOfBirth: string;
-  timeOfBirth: string;
-  gender: string;
-  state: string;
-  city: string;
+interface PlanetaryPosition {
+  planet: string;
+  house: number;
+  sign: string;
 }
+
+const planets = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Rahu", "Ketu"];
+const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
 
 const KundaliPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [birthDetails, setBirthDetails] = useState<BirthDetails>({
-    name: "",
-    dateOfBirth: "",
-    timeOfBirth: "",
-    gender: "",
-    state: "",
-    city: "",
-  });
+  const [kundaliData, setKundaliData] = useState<PlanetaryPosition[]>([]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const generateRandomKundali = (): PlanetaryPosition[] => {
+    return planets.map(planet => ({
+      planet,
+      house: Math.floor(Math.random() * 12) + 1,
+      sign: zodiacSigns[Math.floor(Math.random() * 12)]
+    }));
+  };
+
+  const handleGenerateKundali = () => {
     setIsLoading(true);
     setTimeout(() => {
+      const newKundaliData = generateRandomKundali();
+      setKundaliData(newKundaliData);
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setBirthDetails({
-      ...birthDetails,
-      [e.target.name]: e.target.value,
-    });
-  };
+  useEffect(() => {
+    handleGenerateKundali();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-red-100 to-red-50">
-      <title>SoulBuddy</title>
       <main className="max-w-7xl mx-auto px-4 py-12">
-        {/* Enhanced Form Container */}
-        <div className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 mb-12 backdrop-blur-sm border border-red-100">
-          <h2 className="text-3xl font-bold text-red-900 mb-8 text-center">
-            Generate Your Kundali
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Enhanced Submit Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-gradient-to-r from-red-800 via-red-700 to-red-800 text-white py-4 rounded-xl font-medium shadow-lg hover:from-red-900 hover:to-red-900 transition-all duration-300 disabled:opacity-50 flex items-center justify-center space-x-3 mt-8 border border-red-600"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="animate-spin" size={24} />
-                  <span className="text-lg">Generating Your Kundali...</span>
-                </>
-              ) : (
-                <>
-                  <Star className="w-6 h-6" />
-                  <span className="text-lg">Generate Kundali</span>
-                </>
-              )}
-            </button>
-          </form>
-        </div>
+        <h1 className="text-4xl font-bold text-red-900 mb-8 text-center">Random Kundali Generator</h1>
 
-        {/* Enhanced Kundali Chart */}
-        <div className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 mb-12 backdrop-blur-sm border border-red-100">
-          <h2 className="text-3xl font-bold text-red-900 mb-8 text-center">
-            Your Birth Chart (Kundali)
-          </h2>
-          <div className="grid grid-cols-4 gap-1 bg-red-900 p-1 max-w-3xl mx-auto rounded-lg">
-            {[...Array(12)].map((_, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-white to-red-50 p-6 min-h-[120px] flex flex-col items-center justify-center text-center rounded-md hover:shadow-inner transition-all duration-300"
-              >
-                <span className="text-red-900 font-bold mb-2">
-                  House {index + 1}
-                </span>
-                <span className="text-red-700 text-sm">
-                  {getHouseName(index + 1)}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Button
+          onClick={handleGenerateKundali}
+          disabled={isLoading}
+          className="w-full max-w-md mx-auto mb-8 bg-gradient-to-r from-red-800 via-red-700 to-red-800 text-white py-4 rounded-xl font-medium shadow-lg hover:from-red-900 hover:to-red-900 transition-all duration-300 disabled:opacity-50 flex items-center justify-center space-x-3"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="animate-spin" size={24} />
+              <span className="text-lg">Generating Kundali...</span>
+            </>
+          ) : (
+            <>
+              <RefreshCw className="w-6 h-6" />
+              <span className="text-lg">Generate New Kundali</span>
+            </>
+          )}
+        </Button>
 
-        {/* Enhanced Features Grid */}
+        {/* Kundali Chart */}
+        <Card className="bg-white bg-opacity-95 rounded-2xl shadow-2xl p-8 mb-12 backdrop-blur-sm border border-red-100">
+          <CardHeader>
+            <CardTitle className="text-3xl font-bold text-red-900 text-center">Your Random Kundali</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-4 gap-1 bg-red-900 p-1 max-w-3xl mx-auto rounded-lg">
+              {[...Array(12)].map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-gradient-to-br from-white to-red-50 p-6 min-h-[120px] flex flex-col items-center justify-center text-center rounded-md hover:shadow-inner transition-all duration-300"
+                >
+                  <span className="text-red-900 font-bold mb-2">
+                    House {index + 1}
+                  </span>
+                  <span className="text-red-700 text-sm">
+                    {getHouseName(index + 1)}
+                  </span>
+                  {kundaliData.filter(p => p.house === index + 1).map(p => (
+                    <span key={p.planet} className="text-red-600 text-xs">
+                      {p.planet} in {p.sign}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <EnhancedFeatureCard
             icon={<Sun className="w-12 h-12 text-red-600" />}
@@ -118,66 +114,19 @@ const KundaliPage: React.FC = () => {
   );
 };
 
-// Enhanced Input Field Component
-const InputField: React.FC<{
-  label: string;
-  name: string;
-  type: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
-}> = ({ label, name, type, value, onChange, required }) => (
-  <div className="relative">
-    <label className="block text-red-800 font-medium mb-2">{label}</label>
-    <input
-      type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
-      required={required}
-      className="w-full px-4 py-3 border-2 border-red-100 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white transition-all duration-300 outline-none"
-    />
-  </div>
-);
-
-// Enhanced Select Field Component
-const SelectField: React.FC<{
-  label: string;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: { value: string; label: string }[];
-  required?: boolean;
-}> = ({ label, name, value, onChange, options, required }) => (
-  <div className="relative">
-    <label className="block text-red-800 font-medium mb-2">{label}</label>
-    <select
-      name={name}
-      value={value}
-      onChange={onChange}
-      required={required}
-      className="w-full px-4 py-3 border-2 border-red-100 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white transition-all duration-300 outline-none"
-    >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
-  </div>
-);
-
 // Enhanced Feature Card Component
 const EnhancedFeatureCard: React.FC<{
   icon: React.ReactNode;
   title: string;
   description: string;
 }> = ({ icon, title, description }) => (
-  <div className="bg-white bg-opacity-95 rounded-2xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300 border border-red-100 hover:shadow-xl">
-    <div className="mb-6">{icon}</div>
-    <h3 className="text-2xl font-bold text-red-900 mb-4">{title}</h3>
-    <p className="text-red-700">{description}</p>
-  </div>
+  <Card className="bg-white bg-opacity-95 rounded-2xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300 border border-red-100 hover:shadow-xl">
+    <CardContent>
+      <div className="mb-6">{icon}</div>
+      <h3 className="text-2xl font-bold text-red-900 mb-4">{title}</h3>
+      <p className="text-red-700">{description}</p>
+    </CardContent>
+  </Card>
 );
 
 const getHouseName = (houseNumber: number): string => {
@@ -199,3 +148,4 @@ const getHouseName = (houseNumber: number): string => {
 };
 
 export default KundaliPage;
+
