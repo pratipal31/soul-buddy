@@ -172,7 +172,7 @@ const HoroscopeContent: React.FC = () => (
           </p>
           <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg">
             <Image
-              src="/horoscope-chart.png"
+              src="/birth-chart.png"
               alt="Daily Horoscope Chart"
               layout="fill"
               objectFit="cover"
@@ -233,7 +233,7 @@ const KundaliContent: React.FC = () => (
           </p>
           <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg mb-4">
             <Image
-              src="/kundali-chart.png"
+              src="/kundli.png"
               alt="Kundali Chart"
               layout="fill"
               objectFit="cover"
@@ -306,7 +306,7 @@ const RecommendationsContent: React.FC = () => (
           </p>
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
             <Image
-              src="/blue-sapphire.png"
+              src="/blue.png"
               alt="Blue Sapphire"
               layout="fill"
               objectFit="cover"
@@ -328,7 +328,7 @@ const RecommendationsContent: React.FC = () => (
           <p className="mb-2 font-semibold text-purple-300">Surya Namaskar</p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
             <Image
-              src="/surya-namaskar.png"
+              src="/surya.png"
               alt="Surya Namaskar"
               layout="fill"
               objectFit="cover"
@@ -381,7 +381,7 @@ const SpiritualContent: React.FC = () => (
           </p>
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
             <Image
-              src="/throat-chakra.png"
+              src="/chakra.png"
               alt="Throat Chakra"
               layout="fill"
               objectFit="cover"
@@ -412,7 +412,7 @@ const SpiritualContent: React.FC = () => (
           </p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
             <Image
-              src="/kundalini-yoga.png"
+              src="/yoga.png"
               alt="Kundalini Yoga"
               layout="fill"
               objectFit="cover"
@@ -440,7 +440,7 @@ const SpiritualContent: React.FC = () => (
           <p className="mb-2 font-semibold text-blue-300">Cosmic Lullaby</p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
             <Image
-              src="/cosmic-lullaby.png"
+              src="/cosmic.png"
               alt="Cosmic Lullaby"
               layout="fill"
               objectFit="cover"
