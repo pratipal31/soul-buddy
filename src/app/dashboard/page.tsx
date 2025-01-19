@@ -53,7 +53,7 @@ const Dashboard: React.FC = () => {
         className="relative z-10 max-w-7xl mx-auto"
       >
         <motion.h1
-          className="text-6xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 drop-shadow-lg"
+          className="text-6xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-red-900 to-red-600 drop-shadow-lg"
           {...fadeInUp}
         >
           Welcome back, {user?.firstName || "Cosmic Seeker"}!
@@ -183,7 +183,7 @@ const HoroscopeContent: React.FC = () => (
       }
     />
     <AnimatedCard
-      icon={<Moon className="w-8 h-8 text-blue-300" />}
+      icon={<Moon className="w-8 h-8 text-red-900" />}
       title="Monthly Forecast"
       content={
         <div>
@@ -250,7 +250,7 @@ const KundaliContent: React.FC = () => (
       }
     />
     <AnimatedCard
-      icon={<Star className="w-8 h-8 text-purple-400" />}
+      icon={<Star className="w-8 h-8 text-red-600" />}
       title="Key Insights"
       content={
         <ul className="space-y-4">
@@ -280,9 +280,9 @@ const KundaliContent: React.FC = () => (
             </div>
           </li>
           <li className="flex items-center bg-white/10 p-3 rounded-md">
-            <DollarSign className="w-6 h-6 mr-3 text-blue-400" />
+            <DollarSign className="w-6 h-6 mr-3 text-red-900" />
             <div>
-              <strong className="text-blue-300">Finance:</strong>
+              <strong className="text-red-900">Finance:</strong>
               <p className="text-sm mt-1">
                 Favorable time for long-term investments
               </p>
@@ -297,11 +297,11 @@ const KundaliContent: React.FC = () => (
 const RecommendationsContent: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
     <AnimatedCard
-      icon={<Gem className="w-8 h-8 text-blue-400" />}
+      icon={<Gem className="w-8 h-8 text-red-900" />}
       title="Gemstone Suggestion"
       content={
         <div>
-          <p className="mb-2 font-semibold text-blue-300">
+          <p className="mb-2 font-semibold text-red-900">
             Blue Sapphire (Neelam)
           </p>
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
@@ -321,11 +321,11 @@ const RecommendationsContent: React.FC = () => (
       }
     />
     <AnimatedCard
-      icon={<Feather className="w-8 h-8 text-purple-400" />}
+      icon={<Feather className="w-8 h-8 text-red-600" />}
       title="Recommended Ritual"
       content={
         <div>
-          <p className="mb-2 font-semibold text-purple-300">Surya Namaskar</p>
+          <p className="mb-2 font-semibold text-red-600">Surya Namaskar</p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
             <Image
               src="/surya.png"
@@ -372,11 +372,11 @@ const RecommendationsContent: React.FC = () => (
 const SpiritualContent: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
     <AnimatedCard
-      icon={<Brain className="w-8 h-8 text-purple-400" />}
+      icon={<Brain className="w-8 h-8 text-red-600" />}
       title="Meditation Focus"
       content={
         <div>
-          <p className="mb-2 font-semibold text-purple-300">
+          <p className="mb-2 font-semibold text-red-600 h-14">
             Chakra Balancing Meditation
           </p>
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-lg mb-4">
@@ -433,11 +433,11 @@ const SpiritualContent: React.FC = () => (
       }
     />
     <AnimatedCard
-      icon={<Music className="w-8 h-8 text-blue-400" />}
+      icon={<Music className="w-8 h-8 text-red-900" />}
       title="Sleep Harmony"
       content={
         <div>
-          <p className="mb-2 font-semibold text-blue-300">Cosmic Lullaby</p>
+          <p className="mb-2 font-semibold text-red-900">Cosmic Lullaby</p>
           <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-lg mb-4">
             <Image
               src="/cosmic.png"
@@ -469,14 +469,16 @@ const AnimatedCard: React.FC<{
   content: React.ReactNode;
 }> = ({ icon, title, content }) => (
   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-    <Card className="bg-white/10 backdrop-blur-lg border-none text-black overflow-hidden shadow-lg">
-      <CardHeader className="bg-gradient-to-r from-purple-800/50 to-indigo-800/50">
+    <Card className="bg-white/10 backdrop-blur-lg border-none text-black overflow-hidden shadow-lg min-h-[370px] flex flex-col justify-between">
+      <CardHeader className="bg-gradient-to-r from-red-900 to-red-600 to-indigo-800/50">
         <CardTitle className="flex items-center space-x-2 text-xl">
           {icon}
           <span>{title}</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-4">{content}</CardContent>
+      <CardContent className="p-4 flex-1 flex flex-col justify-between">
+        {content}
+      </CardContent>
     </Card>
   </motion.div>
 );
@@ -489,7 +491,7 @@ const QuickActionButton: React.FC<{
   <motion.div variants={fadeInUp}>
     <Button
       variant="outline"
-      className="w-full h-full py-8 bg-gradient-to-br from-purple-800/50 to-indigo-800/50 hover:from-purple-700/60 hover:to-indigo-700/60 backdrop-blur-lg border-none text-black flex flex-col items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"
+      className="w-full h-full py-8 bbg-gradient-to-r from-red-900 to-red-600 hover:bg-gradient-to-r from-red-600 to-red-900 backdrop-blur-lg border-none text-black flex flex-col items-center justify-center transition-all duration-300 hover:scale-105 shadow-lg"
       asChild
     >
       <a href={href}>
