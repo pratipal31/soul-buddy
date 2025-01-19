@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Heart, Instagram, Twitter, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -32,18 +33,20 @@ export default function Home() {
             <Heart className="h-16 w-16 text-red-600" />
           </motion.div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          Discover your destiny with AI
+            Discover your destiny with AI
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
             Connect with kindred spirits on your journey to enlightenment
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              size="lg"
-              className="bg-transparent hover:bg-red-600 text-white hover:text-white border border-white"
-            >
-              Start Your Journey
-            </Button>
+            <Link href="/user-details">
+              <Button
+                size="lg"
+                className="bg-transparent hover:bg-red-600 text-white hover:text-white border border-white"
+              >
+                Start Your Journey
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </section>
